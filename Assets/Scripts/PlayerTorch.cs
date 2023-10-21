@@ -28,8 +28,9 @@ public class PlayerTorch : MonoBehaviour
 
     public void SwitchCarrier()
     {
-        GetComponent<PlayerController>().isCarrier = !GetComponent<PlayerController>().isCarrier;
-        torch.gameObject.GetComponent<SpriteRenderer>().enabled = GetComponent<PlayerController>().isCarrier;
+        bool newCarrierState = !GetComponent<PlayerController>().isCarrier;
+        GetComponent<PlayerController>().isCarrier = newCarrierState;
+        torch.DoSwap(newCarrierState);
     }
 
     public void DoTorchHit()
