@@ -7,7 +7,7 @@ public class PlayerShoot : MonoBehaviour
   public GameObject proyectilPrefab; // Asigna el prefab del proyectil en el Inspector
   public Transform puntoDeDisparo; // Punto de inicio del proyectil
   private float velocidadDisparo = 7f;
-  private bool canShoot = true;
+  public bool canShoot = true;
   [SerializeField]
   private bool player1 = true;
   private float cooldown = 1f;
