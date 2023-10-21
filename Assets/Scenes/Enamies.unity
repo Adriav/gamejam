@@ -294,7 +294,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5dd4261bce0a92409a99705af7f150e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: 1
 --- !u!1 &1003065367
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,13 +526,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1495413162}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6713d6eccf8f71b4da889bff13f4f17f, type: 3}
+  m_Script: {fileID: 11500000, guid: dfb711685c6429f44b0c077e65acdc47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  proyectilPrefab: {fileID: 2742594813590277670, guid: f9e9e6db11d77ab40943d774e5a1ae75, type: 3}
+  objetivo: {fileID: 217467532}
+  proyectilPrefab: {fileID: 2877124696616408608, guid: a8c22f0f35209914db499a3c885321c3, type: 3}
   velocidadProyectil: 5
-  tiempoEntreDisparos: 6
-  radio: 2
+  tiempoEntreDisparos: 1.5
 --- !u!1 &2077674783
 GameObject:
   m_ObjectHideFlags: 0
