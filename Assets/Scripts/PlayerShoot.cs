@@ -7,23 +7,22 @@ public class PlayerShoot : MonoBehaviour
   public GameObject proyectilPrefab; // Asigna el prefab del proyectil en el Inspector
   public Transform puntoDeDisparo; // Punto de inicio del proyectil
   private float velocidadDisparo = 7f;
-  private bool canShoot = true;
-  [SerializeField]
-  private bool player1 = true;
+  public bool canShoot = true;
+  [SerializeField] private bool player1 = true;
   private float cooldown = 1f;
   private float lastTime;
   void Update()
   {
     if (canShoot && player1)
     {
-      if (Input.GetKeyDown(KeyCode.F) && validCooldown())
+      if (Input.GetKeyDown(KeyCode.F) && ValidCooldown())
       {
         DispararProyectil();
       }
     }
     else if (canShoot && !player1)
     {
-      if (Input.GetKeyDown(KeyCode.RightControl) && validCooldown())
+      if (Input.GetKeyDown(KeyCode.RightControl) && ValidCooldown())
       {
         DispararProyectil();
       }
@@ -41,8 +40,13 @@ public class PlayerShoot : MonoBehaviour
     lastTime = Time.time;
   }
 
-  private bool validCooldown()
+  private bool ValidCooldown()
   {
     return Time.time - lastTime >= cooldown;
+  }
+
+  public void SwitchShoot()
+  {
+    canShoot = !canShoot;
   }
 }
