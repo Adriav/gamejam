@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TorchCarrier : MonoBehaviour
 {
-    [SerializeField] bool isCarrier;
+    [SerializeField] public bool isCarrier;
     private Torch torch;
 
     [Header("iFrames")]
