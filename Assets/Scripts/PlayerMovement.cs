@@ -16,21 +16,24 @@ public class PlayerMovement : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if (GetComponent<PlayerController>().isPlayer1 && GetComponent<PlayerController>().canMove)
-    {
-      movementInput.x = Input.GetAxisRaw("Horizontal");
-      movementInput.y = Input.GetAxisRaw("Vertical");
-      movementInput.Normalize();
-  
-      rb.velocity = movementInput * movementSpeed;
-    }
-    else if (!GetComponent<PlayerController>().isPlayer1 && GetComponent<PlayerController>().canMove)
-    {
-      movementInput.x = Input.GetAxisRaw("HorizontalTorch");
-      movementInput.y = Input.GetAxisRaw("VerticalTorch");
-      movementInput.Normalize();
+    if (!GameManager.Instance.IsGameOver && !GameManager.Instance.IsPaused)
+    {  
+      if (GetComponent<PlayerController>().isPlayer1 && GetComponent<PlayerController>().canMove)
+      {
+        movementInput.x = Input.GetAxisRaw("Horizontal");
+        movementInput.y = Input.GetAxisRaw("Vertical");
+        movementInput.Normalize();
+    
+        rb.velocity = movementInput * movementSpeed;
+      }
+      else if (!GetComponent<PlayerController>().isPlayer1 && GetComponent<PlayerController>().canMove)
+      {
+        movementInput.x = Input.GetAxisRaw("HorizontalTorch");
+        movementInput.y = Input.GetAxisRaw("VerticalTorch");
+        movementInput.Normalize();
 
-      rb.velocity = movementInput * movementSpeed;
+        rb.velocity = movementInput * movementSpeed;
+      }
     }
 
   }
