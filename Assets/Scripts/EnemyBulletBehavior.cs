@@ -9,9 +9,12 @@ public class EnemyBulletBehavior : MonoBehaviour
     [SerializeField] private float fuerzaExplosion;
     [SerializeField] GameObject bullet;
     public float velocidadProyectil = 2f;
+    [SerializeField]
+    private AudioSource audioSource;
     private List<Vector2> direcciones = new List<Vector2>();
     private void Start()
     {
+        audioSource.Play();
         Invoke("Explosion", tiempoDeVida);
         direcciones.Add(new Vector2(1, 0)); // Derecha
         direcciones.Add(new Vector2(1, 1)); // Derecha y arriba
@@ -33,6 +36,7 @@ public class EnemyBulletBehavior : MonoBehaviour
             GameObject proyectil = Instantiate(bullet, transform.position, transform.rotation);
             Rigidbody2D rb = proyectil.GetComponent<Rigidbody2D>();
             rb.velocity = direccion.normalized * velocidadProyectil;
+            Destroy(proyectil, tiempoDeVida);
         }
 
         Destroy(gameObject);
