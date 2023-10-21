@@ -6,17 +6,13 @@ public class disparos : MonoBehaviour
 {
     public Transform objetivo; 
     public GameObject proyectilPrefab; 
-
     public float velocidadProyectil = 5f; 
     public float tiempoEntreDisparos = 1.5f; 
-
     private float tiempoParaSiguienteDisparo = 0f;
-
     void Update()
     {
         if (objetivo != null)
-        {
-            
+        {    
             Vector2 direction = objetivo.position;         
             if (Time.time >= tiempoParaSiguienteDisparo)
             {                

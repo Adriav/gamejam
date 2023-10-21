@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 217467531}
   - component: {fileID: 217467534}
   - component: {fileID: 217467533}
+  - component: {fileID: 217467535}
   m_Layer: 0
   m_Name: prota
   m_TagString: Player
@@ -262,7 +263,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 217467530}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -281,6 +282,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &217467535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217467530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5dd4261bce0a92409a99705af7f150e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player2: 0
 --- !u!1 &659263333
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,7 +644,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objetivo: {fileID: 217467532}
   proyectilPrefab: {fileID: 659263333}
-  velocidadProyectil: 100
+  velocidadProyectil: 10
+  tiempoEntreDisparos: 0.5
 --- !u!1 &2077674783
 GameObject:
   m_ObjectHideFlags: 0
