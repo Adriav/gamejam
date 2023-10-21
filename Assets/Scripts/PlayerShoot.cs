@@ -9,6 +9,7 @@ public class PlayerShoot : MonoBehaviour
   private float velocidadDisparo = 7f;
   private float cooldown = 1f;
   private float lastTime;
+  public AudioSource audioSource;
   void Update()
   {
     if (GetComponent<PlayerController>().canShoot && GetComponent<PlayerController>().isPlayer1)
@@ -35,6 +36,7 @@ public class PlayerShoot : MonoBehaviour
     // Configurar la velocidad del proyectil para que se mueva hacia la derecha
     Rigidbody2D rb = proyectil.GetComponent<Rigidbody2D>();
     rb.velocity = new Vector2(velocidadDisparo, 0f); // Ajusta la velocidad según tus necesidades
+    audioSource.Play();
     lastTime = Time.time;
   }
 
