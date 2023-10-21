@@ -4,19 +4,27 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public PlayerShoot playerShoot; // Asigna el script PlayerShoot desde el Inspector
-    public TorchCarrier carrier;
-    public bool isCarrier;
+    private PlayerShoot playerShoot;
+    private PlayerTorch carrier;
+
+    [Header("Swap cooldown")]
+    private float coolDown = 0;
+    [SerializeField] private float coolDownTime = 2f;
+
+    [Header("Vulnerability")]
     [SerializeField] private float vulnerabilityDuration = 4f;
     private bool isVulnerable = false;
-    Collider other;
-    private bool canShoot;
-    private float coolDown = 0;
-    public float coolDownTime = 2f;
+
+    [Header("iFrames")]
     [SerializeField] private float iFramesDuration = 2f;
     private SpriteRenderer sprite;
-    
 
+    private void Start()
+    {
+        playerShoot = GetComponent<PlayerShoot>();
+        carrier = GetComponent<PlayerTorch>();
+        sprite = GetComponent<SpriteRenderer>();
+    }
 
     private void Update()
     {
@@ -24,36 +32,26 @@ public class PlayerController : MonoBehaviour
         {
             SwitchRole();
             coolDown = coolDownTime;
-        }     
+        }
         if (coolDown > 0)
         {
             coolDown -= Time.deltaTime;
         }
-        
-    }
-
-    private void Start()
-    {
-        playerShoot = GetComponent<PlayerShoot>();
-        carrier = GetComponent<TorchCarrier>();
-        canShoot = playerShoot.canShoot;
-        isCarrier = carrier.isCarrier;
-        sprite = GetComponent<SpriteRenderer>();
     }
 
     private void SwitchRole()
     {
         playerShoot.SwitchShoot();
-        carrier.SwapTorchCarrier();
+        carrier.SwitchCarrier();
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("EnemyBullet"))
         {
-            if (isCarrier)
+            if (carrier.isCarrier)
             {
-                carrier.torch.DoHit();
+                carrier.DoTorchHit();
                 StartCoroutine(Invulnerability());
             }
             else
@@ -62,7 +60,7 @@ public class PlayerController : MonoBehaviour
 
             }
         }
-        
+
     }
     private IEnumerator Invulnerability()
     {
