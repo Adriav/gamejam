@@ -7,6 +7,11 @@ public class PlayerController : MonoBehaviour
     private PlayerShoot playerShoot;
     private PlayerTorch carrier;
 
+    [Header("Player Status")]
+    public bool isPlayer1;
+    public bool canShoot;
+    public bool isCarrier;
+
     [Header("Swap cooldown")]
     private float coolDown = 0;
     [SerializeField] private float coolDownTime = 2f;
@@ -49,7 +54,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("EnemyBullet"))
         {
-            if (carrier.isCarrier)
+            if (isCarrier)
             {
                 carrier.DoTorchHit();
                 StartCoroutine(Invulnerability());

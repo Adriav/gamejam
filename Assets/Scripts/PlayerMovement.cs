@@ -7,18 +7,18 @@ public class PlayerMovement : MonoBehaviour
   private float movementSpeed = 5f;
   private Rigidbody2D rb;
   private Vector2 movementInput;
-  [SerializeField]
-  private bool player1 = true;
+  [SerializeField] private bool canMove;
   // Start is called before the first frame update
   void Awake()
   {
     rb = GetComponent<Rigidbody2D>();
+    canMove = true;
   }
 
   // Update is called once per frame
   void Update()
   {
-    if (player1)
+    if (GetComponent<PlayerController>().isPlayer1 && canMove)
     {
       movementInput.x = Input.GetAxisRaw("Horizontal");
       movementInput.y = Input.GetAxisRaw("Vertical");
@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
   
       rb.velocity = movementInput * movementSpeed;
     }
-    else
+    else if (!GetComponent<PlayerController>().isPlayer1 && canMove)
     {
       movementInput.x = Input.GetAxisRaw("HorizontalTorch");
       movementInput.y = Input.GetAxisRaw("VerticalTorch");
@@ -35,5 +35,10 @@ public class PlayerMovement : MonoBehaviour
       rb.velocity = movementInput * movementSpeed;
     }
 
+  }
+
+  public void switchMoveStatus()
+  {
+    canMove = !canMove;
   }
 }
