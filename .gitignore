@@ -4,6 +4,8 @@
 #
 
 .vscode/
+.vsconfig
+.vsconfig/
 [Ll]ibrary
 [Tt]emp
 [Oo]bj
