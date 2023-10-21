@@ -6,14 +6,14 @@ public class EnemyLife : MonoBehaviour
 {
     public int maxHealth = 3;
     private int currentHealth;
-    public int damageAmount = 1; // Cantidad de daño que causa la bala.
+    public int damageAmount = 1; // Cantidad de daï¿½o que causa la bala.
 
     private void Start()
     {
         currentHealth = maxHealth;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Bullet"))
         {

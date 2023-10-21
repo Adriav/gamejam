@@ -7,10 +7,12 @@ public class PlayerMovement : MonoBehaviour
   private float movementSpeed = 5f;
   private Rigidbody2D rb;
   private Vector2 movementInput;
+  private PlayerController pc;
   // Start is called before the first frame update
   void Awake()
   {
     rb = GetComponent<Rigidbody2D>();
+    pc = GetComponent<PlayerController>();
   }
 
   // Update is called once per frame
@@ -18,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
   {
     if (!GameManager.Instance.IsGameOver && !GameManager.Instance.IsPaused)
     {  
-      if (GetComponent<PlayerController>().isPlayer1 && GetComponent<PlayerController>().canMove)
+      if (pc.isPlayer1 && pc.canMove)
       {
         movementInput.x = Input.GetAxisRaw("Horizontal");
         movementInput.y = Input.GetAxisRaw("Vertical");
@@ -26,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     
         rb.velocity = movementInput * movementSpeed;
       }
-      else if (!GetComponent<PlayerController>().isPlayer1 && GetComponent<PlayerController>().canMove)
+      else if (!pc.isPlayer1 && pc.canMove)
       {
         movementInput.x = Input.GetAxisRaw("HorizontalTorch");
         movementInput.y = Input.GetAxisRaw("VerticalTorch");
@@ -34,6 +36,28 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = movementInput * movementSpeed;
       }
+    }
+    // Jugador 1 presiona G y no se puede mover
+    if (Input.GetKey(KeyCode.G) && pc.isPlayer1)
+    {
+      pc.canMove = false;
+      rb.velocity = Vector2.zero;
+    }
+    // Jugador 1 libera G y ya se puede mover
+    if (Input.GetKeyUp(KeyCode.G) && pc.isPlayer1)
+    {
+      pc.canMove = true;
+    }
+    // Jugador 2 presiona RShift y no se puede mover
+    if (Input.GetKey(KeyCode.RightShift) && !pc.isPlayer1)
+    {
+      pc.canMove = false;
+      rb.velocity = Vector2.zero;
+    }
+    // Jugador 2 libera RShift y ya se puede mover
+    if (Input.GetKeyUp(KeyCode.RightShift) && !pc.isPlayer1)
+    {
+      pc.canMove = true;
     }
 
   }
