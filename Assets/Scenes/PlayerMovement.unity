@@ -167,6 +167,8 @@ GameObject:
   - component: {fileID: 1046225552}
   - component: {fileID: 1046225555}
   - component: {fileID: 1046225556}
+  - component: {fileID: 1046225558}
+  - component: {fileID: 1046225557}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -281,7 +283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5dd4261bce0a92409a99705af7f150e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: 1
 --- !u!114 &1046225556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,7 +297,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proyectilPrefab: {fileID: 4067730592677827155, guid: d65e0a96850b3d4408a68000d84c2527, type: 3}
   puntoDeDisparo: {fileID: 375766777}
-  player1: 1
+--- !u!114 &1046225557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046225551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3d28bbfc1416943ba21d473ea219e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1046225558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046225551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28587ee1971b5f3488000c818bf8ddb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayer1: 1
+  canShoot: 1
+  isCarrier: 0
+  canMove: 1
+  coolDownTime: 2
+  vulnerabilityDuration: 4
+  iFramesDuration: 2
 --- !u!1 &1286115489
 GameObject:
   m_ObjectHideFlags: 0

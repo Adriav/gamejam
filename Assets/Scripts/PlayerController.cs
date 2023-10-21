@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public bool isPlayer1;
     public bool canShoot;
     public bool isCarrier;
+    public bool canMove;
 
     [Header("Swap cooldown")]
     private float coolDown = 0;
