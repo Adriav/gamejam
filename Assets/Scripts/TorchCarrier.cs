@@ -26,13 +26,13 @@ public class TorchCarrier : MonoBehaviour
         //Ignore commands if game is stopped
         if (GameManager.Instance.IsPaused || GameManager.Instance.IsGameOver)
             return;
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.G))
             torch.DoSlash();
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (isCarrier && other.CompareTag("Bullet"))
+        if (isCarrier && other.CompareTag("EnemyBullet"))
         {
             torch.DoHit();
             StartCoroutine(Invulnerability());
