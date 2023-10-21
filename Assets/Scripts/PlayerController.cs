@@ -5,52 +5,82 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public PlayerShoot playerShoot; // Asigna el script PlayerShoot desde el Inspector
-    private float vulnerabilityDuration = 4f;
+    public TorchCarrier carrier;
+    public bool isCarrier;
+    [SerializeField] private float vulnerabilityDuration = 4f;
     Collider other;
+    private bool canShoot;
+    private float coolDown = 0;
+    public float coolDownTime = 2f;
+    [SerializeField] private float iFramesDuration = 2f;
+    private SpriteRenderer sprite;
+    
 
 
     private void Update()
     {
-        if ((Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.RightControl)) && canShoot)
+        if ((Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.RightControl)) && canShoot && coolDown <= 0)
         {
             SwitchRole();
-        }       
+            coolDown = coolDownTime;
+        }     
+        if (coolDown > 0)
+        {
+            coolDown -= Time.deltaTime;
+        }
+        
+    }
+
+    private void Start()
+    {
+        playerShoot = GetComponent<PlayerShoot>();
+        carrier = GetComponent<TorchCarrier>();
+        canShoot = playerShoot.canShoot;
+        isCarrier = carrier.isCarrier;
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     private void SwitchRole()
     {
-        playerShoot = GetComponent<PlayerShoot>();
         playerShoot.SwitchShoot();
+        carrier.SwapTorchCarrier();
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player1"))
+        if (other.CompareTag("EnemyBullet"))
         {
-            if (canShoot == true)
+            if (isCarrier)
             {
-                SwitchRole();
+                carrier.torch.DoHit();
+                StartCoroutine(Invulnerability());
             }
             else
             {
+                StartCoroutine(InvulnerabilityShooter());
 
             }
         }
-        else if (other.CompareTag("Player2"))
-        {
-            // Acciones para objetos relacionados con el jugador 2
-        }
+        
     }
-
-    public void TakeDamage()
+    private IEnumerator Invulnerability()
     {
-        if (canShoot)
-        {
-            // Implementa aquí las acciones cuando el jugador recibe daño.
-            // Por ejemplo, reducir la vida, mostrar una animación, etc.
-            // Inicia el tiempo de vulnerabilidad.
-            canShoot = false;
-            vulnerabilityDuration = 4f;
-        }
+        Physics2D.IgnoreLayerCollision(6, 8, true);
+        Color colorDefault = sprite.color;
+        sprite.color = new Color(1, 1, 1, 0.5f);
+        yield return new WaitForSeconds(iFramesDuration);
+        sprite.color = colorDefault;
+        Physics2D.IgnoreLayerCollision(6, 8, false);
+    }
+    private IEnumerator InvulnerabilityShooter()
+    {
+        playerShoot.SwitchShoot();
+        Physics2D.IgnoreLayerCollision(6, 8, true);
+        Color colorDefault = sprite.color;
+        sprite.color = new Color(1, 1, 1, 0.5f);
+        yield return new WaitForSeconds(vulnerabilityDuration);
+        sprite.color = colorDefault;
+        Physics2D.IgnoreLayerCollision(6, 8, false);
+        playerShoot.SwitchShoot();
     }
 }

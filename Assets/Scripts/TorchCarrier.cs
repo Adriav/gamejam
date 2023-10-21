@@ -4,15 +4,13 @@ using UnityEngine;
 public class TorchCarrier : MonoBehaviour
 {
     [SerializeField] public bool isCarrier;
-    private Torch torch;
+    public Torch torch;
 
-    [Header("iFrames")]
-    [SerializeField] private float iFramesDuration;
-    private SpriteRenderer sprite;
+
 
     void Start()
     {
-        sprite = GetComponent<SpriteRenderer>();
+        
     }
 
     // Update is called once per frame
@@ -30,27 +28,12 @@ public class TorchCarrier : MonoBehaviour
             torch.DoSlash();
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (isCarrier && other.CompareTag("EnemyBullet"))
-        {
-            torch.DoHit();
-            StartCoroutine(Invulnerability());
-        }
-    }
+    
 
     public void SwapTorchCarrier()
     {
         isCarrier = !isCarrier;
     }
 
-    private IEnumerator Invulnerability()
-    {
-        Physics2D.IgnoreLayerCollision(6, 8, true);
-        Color colorDefault = sprite.color;
-        sprite.color = new Color(1, 1, 1, 0.5f);
-        yield return new WaitForSeconds(iFramesDuration);
-        sprite.color = colorDefault;
-        Physics2D.IgnoreLayerCollision(6, 8, false);
-    }
+    
 }
