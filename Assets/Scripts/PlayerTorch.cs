@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class PlayerTorch : MonoBehaviour
 {
-    [SerializeField] public bool isCarrier;
     private Torch torch;
-    [SerializeField] private bool player1 = true;
 
     void Start()
     {
@@ -16,18 +14,23 @@ public class PlayerTorch : MonoBehaviour
     void Update()
     {
         //Ignore commands if not the carrier or game is stopped
-        if (!isCarrier || GameManager.Instance.IsPaused || GameManager.Instance.IsGameOver)
+        if (!GetComponent<PlayerController>().isCarrier || GameManager.Instance.IsPaused || GameManager.Instance.IsGameOver)
             return;
-        if (player1 && Input.GetKeyDown(KeyCode.F))
-            torch.DoSlash();
-        else if (!player1 && Input.GetKeyDown(KeyCode.RightControl))
-            torch.DoSlash();
+        if (GetComponent<PlayerController>().isPlayer1)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+                torch.DoSlash();
+        }
+        else
+            if (Input.GetKeyDown(KeyCode.RightControl))
+                torch.DoSlash();
     }
 
     public void SwitchCarrier()
     {
-        isCarrier = !isCarrier;
-        torch.DoSwap(isCarrier);
+        bool newCarrierState = !GetComponent<PlayerController>().isCarrier;
+        GetComponent<PlayerController>().isCarrier = newCarrierState;
+        torch.DoSwap(newCarrierState);
     }
 
     public void DoTorchHit()
