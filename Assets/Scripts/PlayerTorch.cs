@@ -4,19 +4,28 @@ using UnityEngine;
 public class PlayerTorch : MonoBehaviour
 {
     private Torch torch;
+    private PlayerController controller;
+
+    [Header("Fire Bar")]
+    [SerializeField] private FireBar firebar;
+    [SerializeField] private float fireBarOffset_X;
+    [SerializeField] private float fireBarOffset_Y;
 
     void Start()
     {
+        controller = GetComponent<PlayerController>();
         torch = transform.GetComponentInChildren<Torch>();
+        torch.SetVisible(controller.isCarrier);
+        firebar.gameObject.SetActive(controller.isCarrier);
     }
 
     // Update is called once per frame
     void Update()
     {
         //Ignore commands if not the carrier or game is stopped
-        if (!GetComponent<PlayerController>().isCarrier || GameManager.Instance.IsPaused || GameManager.Instance.IsGameOver)
+        if (!controller.isCarrier || GameManager.Instance.IsPaused || GameManager.Instance.IsGameOver)
             return;
-        if (GetComponent<PlayerController>().isPlayer1)
+        if (controller.isPlayer1)
         {
             if (Input.GetKeyDown(KeyCode.F))
                 torch.DoSlash();
@@ -24,13 +33,17 @@ public class PlayerTorch : MonoBehaviour
         else
             if (Input.GetKeyDown(KeyCode.RightControl))
                 torch.DoSlash();
+        //Update firebar
+        firebar.SetFireAmount(torch.currentFuel);
+        firebar.SetPosition(new Vector2(transform.position.x + fireBarOffset_X, transform.position.y + fireBarOffset_Y));
     }
 
     public void SwitchCarrier()
     {
-        bool newCarrierState = !GetComponent<PlayerController>().isCarrier;
-        GetComponent<PlayerController>().isCarrier = newCarrierState;
+        bool newCarrierState = !controller.isCarrier;
+        controller.isCarrier = newCarrierState;
         torch.DoSwap(newCarrierState);
+        firebar.gameObject.SetActive(newCarrierState);
     }
 
     public void DoTorchHit()

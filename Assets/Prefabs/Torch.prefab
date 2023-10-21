@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxFuel: 100
-  fuelSlashLoss: 10
-  fuelHitLoss: 20
-  fuelTimeLoss: 1
+  fuelSlashLoss: 20
+  fuelTimeLoss: 5
+  fuelHitValue: 15
   currentFuel: 0

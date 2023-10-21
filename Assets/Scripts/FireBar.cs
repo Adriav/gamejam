@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class FireBar : MonoBehaviour
 {
-    [SerializeField] float yOffset;
     private Image fireBarFill;
 
     // Start is called before the first frame update
@@ -17,5 +16,11 @@ public class FireBar : MonoBehaviour
     public void SetFireAmount(float amount)
     {
         fireBarFill.fillAmount = amount / 100;
+    }
+
+    public void SetPosition(Vector2 torchPos)
+    {
+        RectTransform rt = GetComponent<RectTransform>();
+        rt.position = torchPos;
     }
 }

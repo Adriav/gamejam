@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Torch : MonoBehaviour
 {
-    [Header("Fire Bar")]
-    [SerializeField] private FireBar firebar;
-
     [Header("Fuel Values")]
     [SerializeField] private float maxFuel;
     [SerializeField] private float fuelSlashLoss;
@@ -20,7 +17,6 @@ public class Torch : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         currentFuel = maxFuel;
-        firebar.gameObject.SetActive(GetComponent<SpriteRenderer>().enabled);
     }
 
     void Update()
@@ -35,8 +31,6 @@ public class Torch : MonoBehaviour
         }
         //Decrease the current heat
         currentFuel -= Time.deltaTime * fuelTimeLoss;
-        //Update firebar
-        firebar.SetFireAmount(currentFuel);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -61,10 +55,14 @@ public class Torch : MonoBehaviour
             GameManager.Instance.IsGameOver = true;
     }
 
-    public void DoSwap(bool active)
+    public void DoSwap(bool state)
     {
         currentFuel = maxFuel;
-        GetComponent<SpriteRenderer>().enabled = active;
-        firebar.gameObject.SetActive(active);
+        SetVisible(state);
+    }
+
+    public void SetVisible(bool state)
+    {
+        GetComponent<SpriteRenderer>().enabled = state;
     }
 }
