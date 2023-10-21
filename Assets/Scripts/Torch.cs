@@ -7,8 +7,8 @@ public class Torch : MonoBehaviour
     [Header("Heat Values")]
     [SerializeField] private float maxFuel;
     [SerializeField] private float fuelSlashLoss;
-    [SerializeField] private float fuelHitLoss;
     [SerializeField] private float fuelTimeLoss;
+    [SerializeField] private float fuelHitValue;
 
     [SerializeField] private float currentFuel;
     private Animator anim;
@@ -21,8 +21,9 @@ public class Torch : MonoBehaviour
 
     void Update()
     {
-        //Check if about to run out
-
+        //Game is in a menu
+        if (GameManager.Instance.IsPaused || GameManager.Instance.IsGameOver)
+            return;
         //Check if loses
         if (currentFuel <= 0)
         {
@@ -48,6 +49,15 @@ public class Torch : MonoBehaviour
 
     public void DoHit()
     {
-        currentFuel -= fuelHitLoss;
+        if (currentFuel > fuelHitValue)
+            currentFuel = fuelHitValue;
+        else
+            GameManager.Instance.IsGameOver = true;
+    }
+
+    public void DoSwap(bool active)
+    {
+        currentFuel = maxFuel;
+        gameObject.GetComponent<SpriteRenderer>().enabled = active;
     }
 }
