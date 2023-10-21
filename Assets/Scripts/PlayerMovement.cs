@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if (!GameManager.Instance.IsGameOver && !GameManager.Instance.IsGameOver)
+    if (!GameManager.Instance.IsGameOver && !GameManager.Instance.IsPaused)
     {  
       if (GetComponent<PlayerController>().isPlayer1 && GetComponent<PlayerController>().canMove)
       {
