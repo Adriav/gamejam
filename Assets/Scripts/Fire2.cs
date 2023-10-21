@@ -9,7 +9,7 @@ public class Fire2 : MonoBehaviour
     public float velocidadProyectil = 5f;
     public float tiempoEntreDisparos = 6f;
     private float tiempoParaSiguienteDisparo = 0f;
-    public float tiempoDeVida = 0.1f; // Tiempo de vida en segundos.;
+    //public float tiempoDeVida = 0.1f; // Tiempo de vida en segundos.;
     [SerializeField] private float radio;
     // private Transform spawnPoint;
     //  public Color nuevoColor = Color.red;

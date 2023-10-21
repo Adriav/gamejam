@@ -270,7 +270,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -512,7 +512,7 @@ Transform:
   m_GameObject: {fileID: 1495413162}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.58, y: -1.35, z: 0}
+  m_LocalPosition: {x: 4.33, y: -0.09, z: 0}
   m_LocalScale: {x: 1, y: 0.9663, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -533,7 +533,6 @@ MonoBehaviour:
   proyectilPrefab: {fileID: 2742594813590277670, guid: f9e9e6db11d77ab40943d774e5a1ae75, type: 3}
   velocidadProyectil: 5
   tiempoEntreDisparos: 6
-  tiempoDeVida: 5
   radio: 2
 --- !u!1 &2077674783
 GameObject:

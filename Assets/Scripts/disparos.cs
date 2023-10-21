@@ -30,6 +30,7 @@ public class disparos : MonoBehaviour
             Rigidbody2D rb = proyectil.GetComponent<Rigidbody2D>();
             Vector2 direccionProyectil = (objetivo.position - transform.position).normalized;
             rb.velocity = direccionProyectil * velocidadProyectil;
+            Destroy(proyectil, 5f);
         }
     }
 }
