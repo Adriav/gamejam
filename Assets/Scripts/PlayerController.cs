@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public TorchCarrier carrier;
     public bool isCarrier;
     [SerializeField] private float vulnerabilityDuration = 4f;
+    private bool isVulnerable = false;
     Collider other;
     private bool canShoot;
     private float coolDown = 0;
@@ -19,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if ((Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.RightControl)) && canShoot && coolDown <= 0)
+        if (Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.RightShift) && !isVulnerable && coolDown <= 0)
         {
             SwitchRole();
             coolDown = coolDownTime;
@@ -74,13 +75,13 @@ public class PlayerController : MonoBehaviour
     }
     private IEnumerator InvulnerabilityShooter()
     {
-        playerShoot.SwitchShoot();
+        isVulnerable = true;
         Physics2D.IgnoreLayerCollision(6, 8, true);
         Color colorDefault = sprite.color;
         sprite.color = new Color(1, 1, 1, 0.5f);
         yield return new WaitForSeconds(vulnerabilityDuration);
         sprite.color = colorDefault;
         Physics2D.IgnoreLayerCollision(6, 8, false);
-        playerShoot.SwitchShoot();
+        isVulnerable = false;
     }
 }

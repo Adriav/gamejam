@@ -8,8 +8,7 @@ public class PlayerShoot : MonoBehaviour
   public Transform puntoDeDisparo; // Punto de inicio del proyectil
   private float velocidadDisparo = 7f;
   public bool canShoot = true;
-  [SerializeField]
-  private bool player1 = true;
+  [SerializeField] private bool player1 = true;
   private float cooldown = 1f;
   private float lastTime;
   void Update()

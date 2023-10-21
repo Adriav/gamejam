@@ -5,8 +5,7 @@ public class TorchCarrier : MonoBehaviour
 {
     [SerializeField] public bool isCarrier;
     public Torch torch;
-
-
+    [SerializeField] private bool player1 = true;
 
     void Start()
     {
@@ -24,7 +23,9 @@ public class TorchCarrier : MonoBehaviour
         //Ignore commands if game is stopped
         if (GameManager.Instance.IsPaused || GameManager.Instance.IsGameOver)
             return;
-        if (Input.GetKeyDown(KeyCode.G))
+        if (player1 && Input.GetKeyDown(KeyCode.F))
+            torch.DoSlash();
+        else if(!player1 && Input.GetKeyDown(KeyCode.RightControl))
             torch.DoSlash();
     }
 
