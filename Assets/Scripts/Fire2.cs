@@ -20,6 +20,10 @@ public class Fire2 : MonoBehaviour
     private float MIN_TIME = 4.5f;
     private System.Random random = new System.Random();
 
+    private float MAX_TIME = 6.5f;
+    private float MIN_TIME = 4.5f;
+    private System.Random random = new System.Random();
+
     void Start()
     {
         // spawnPoint = transform;
@@ -31,9 +35,9 @@ public class Fire2 : MonoBehaviour
         tiempoRecarga = tiempoEntreDisparos - 1;
         tiempoParaSiguienteDisparo = Time.time + tiempoEntreDisparos;
         audioSource = GetComponent<AudioSource>();
-    
+    }
 
-    
+
 
     // Update is called once per frame
     void Update()
