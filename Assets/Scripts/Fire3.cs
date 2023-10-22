@@ -9,6 +9,7 @@ public class Fire3 : MonoBehaviour
     public float tiempoEntreDisparos = 2f;
     private float tiempoParaSiguienteDisparo = 0f;
     private AudioSource audioSource;
+  
 
     private List<Vector2> direcciones = new List<Vector2>();
 
@@ -35,6 +36,7 @@ public class Fire3 : MonoBehaviour
 
     void Disparar()
     {
+       
         audioSource.Play();
         for (int i = 0; i < direcciones.Count; i++)
         {

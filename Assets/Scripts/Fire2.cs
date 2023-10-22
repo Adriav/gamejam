@@ -14,11 +14,15 @@ public class Fire2 : MonoBehaviour
     private AudioSource audioSource;
     // private Transform spawnPoint;
     //  public Color nuevoColor = Color.red;
+    private Animator animator;
+    private bool isShoot = false;
 
     void Start()
     {
         // spawnPoint = transform;
-       tiempoParaSiguienteDisparo = Time.time + tiempoEntreDisparos;
+        animator = GetComponent<Animator>();
+        animator.SetBool("disparo", isShoot);
+        tiempoParaSiguienteDisparo = Time.time + tiempoEntreDisparos;
        audioSource = GetComponent<AudioSource>();
     }
 
@@ -39,6 +43,7 @@ public class Fire2 : MonoBehaviour
 
     void Disparar()
     {
+        animator.SetBool("disparo", isShoot);
         audioSource.Play();
         GameObject proyectil = Instantiate(proyectilPrefab, transform.position, transform.rotation);
         Rigidbody2D rb = proyectil.GetComponent<Rigidbody2D>();
