@@ -7,21 +7,19 @@ public class Fire2 : MonoBehaviour
 
     public GameObject proyectilPrefab;
     public float velocidadProyectil = 5f;
-    public float tiempoEntreDisparos; // 6f
+    public float tiempoEntreDisparos; // 4.5 a 6.5f
     private float tiempoParaSiguienteDisparo = 0f;
-    //public float tiempoDeVida = 0.1f; // Tiempo de vida en segundos.;
+    private float tiempoRecarga; // tiempoEntreDisparos - 1
     [SerializeField] private float radio;
     private AudioSource audioSource;
     private float MAX_TIME = 6.5f;
     private float MIN_TIME = 4.5f;
     private System.Random random = new System.Random();
-    // private Transform spawnPoint;
-    //  public Color nuevoColor = Color.red;
 
     void Start()
     {
         tiempoEntreDisparos = (float)(random.NextDouble() * (MAX_TIME - MIN_TIME)) + MIN_TIME;
-        // spawnPoint = transform;
+        tiempoRecarga = tiempoEntreDisparos - 1;
         tiempoParaSiguienteDisparo = Time.time + tiempoEntreDisparos;
         audioSource = GetComponent<AudioSource>();
     }
@@ -29,6 +27,10 @@ public class Fire2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.time >= tiempoRecarga)
+        {
+            // Logica de hacer la animacion de preparacion
+        }
         if (Time.time >= tiempoParaSiguienteDisparo)
         {
             Disparar();
