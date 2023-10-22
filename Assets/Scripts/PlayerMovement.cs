@@ -65,10 +65,6 @@ public class PlayerMovement : MonoBehaviour
     {
       animator.SetBool("swapPose", true);
       GameManager.Instance.Player1Swap = true;
-    }
-    // Jugador 1 presiona G y no se puede mover
-    if (Input.GetKey(KeyCode.G) && pc.isPlayer1)
-    {
       pc.canMove = false;
       rb.velocity = Vector2.zero;
     }
@@ -83,10 +79,6 @@ public class PlayerMovement : MonoBehaviour
     {
       animator.SetBool("swapPose", true);
       GameManager.Instance.Player2Swap = true;
-    }
-    // Jugador 2 presiona RShift y no se puede mover
-    if (Input.GetKey(KeyCode.RightShift) && !pc.isPlayer1)
-    {
       pc.canMove = false;
       rb.velocity = Vector2.zero;
     }

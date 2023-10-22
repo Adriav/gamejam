@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Vulnerability")]
     [SerializeField] private float vulnerabilityDuration = 4f;
-    
+
 
     [Header("iFrames")]
     [SerializeField] private float iFramesDuration = 2f;
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.IsGameOver || GameManager.Instance.IsPaused) return;
+        if (GameManager.Instance.InMenu) return;
         if (GameManager.Instance.Player1Swap && GameManager.Instance.Player2Swap && !GameManager.Instance.PlayerVulnerable && coolDown <= 0)
         {
             SwitchRole();
@@ -55,19 +55,15 @@ public class PlayerController : MonoBehaviour
 
     private void SwitchRole()
     {
-        //Set state for animator
-        animator.SetBool("swapPose",false);
-        if(isCarrier)
-            animator.SetTrigger("swapThrow");
-        animator.SetTrigger("swapFinish");
         //Swap the variables
         playerShoot.SwitchShoot();
         carrier.SwitchCarrier();
+        //Set state for animator
+        animator.SetTrigger("swapThrow");
         animator.SetBool("hasTorch", isCarrier);
         if (isCarrier)
-        {
             GameManager.Instance.TorchPlayer = transform;
-        }
+        GameManager.Instance.InSwapAnimation = true;
     }
 
     void OnTriggerEnter2D(Collider2D other)

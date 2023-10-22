@@ -22,7 +22,7 @@ public class Torch : MonoBehaviour
     void Update()
     {
         //Game is in a menu
-        if (GameManager.Instance.IsPaused || GameManager.Instance.IsGameOver)
+        if (GameManager.Instance.InMenu)
             return;
         //Check if loses
         if (currentFuel <= 0)

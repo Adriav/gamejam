@@ -23,16 +23,12 @@ public class PlayerTorch : MonoBehaviour
     void Update()
     {
         //Ignore commands if not the carrier or game is stopped
-        if (!controller.isCarrier || GameManager.Instance.IsPaused || GameManager.Instance.IsGameOver)
+        if (GameManager.Instance.InMenu || !controller.isCarrier)
             return;
-        if (controller.isPlayer1)
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-                torch.DoSlash();
-        }
-        else
-            if (Input.GetKeyDown(KeyCode.RightControl))
-                torch.DoSlash();
+        if (controller.isPlayer1 && Input.GetKeyDown(KeyCode.F))
+            torch.DoSlash();
+        else if (!controller.isPlayer1 && Input.GetKeyDown(KeyCode.RightControl))
+            torch.DoSlash();
         //Update firebar
         firebar.SetFireAmount(torch.currentFuel);
         firebar.SetPosition(new Vector2(transform.position.x + fireBarOffset_X, transform.position.y + fireBarOffset_Y));
