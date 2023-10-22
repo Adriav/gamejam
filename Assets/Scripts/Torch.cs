@@ -2,21 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Torch : MonoBehaviour
+public class TorchHealth : MonoBehaviour
 {
-    [Header("Fuel Values")]
-    [SerializeField] private float maxFuel;
-    [SerializeField] private float fuelSlashLoss;
-    [SerializeField] private float fuelTimeLoss;
-    [SerializeField] private float fuelHitValue;
+    [Header("Health Values")]
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float slashCost;
+    [SerializeField] private float timeLoss;
+    [SerializeField] private float onHitValue;
     public float currentFuel;
-
-    private Animator anim;
 
     void Start()
     {
-        anim = GetComponent<Animator>();
-        currentFuel = maxFuel;
+        currentFuel = maxHealth;
     }
 
     void Update()
@@ -30,7 +27,7 @@ public class Torch : MonoBehaviour
             GameManager.Instance.IsGameOver = true;
         }
         //Decrease the current heat
-        currentFuel -= Time.deltaTime * fuelTimeLoss;
+        currentFuel -= Time.deltaTime * timeLoss;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -43,21 +40,20 @@ public class Torch : MonoBehaviour
 
     public void DoSlash()
     {
-        anim.SetTrigger("Slash");
-        currentFuel -= fuelSlashLoss;
+        currentFuel -= slashCost;
     }
 
     public void DoHit()
     {
-        if (currentFuel > fuelHitValue)
-            currentFuel = fuelHitValue;
+        if (currentFuel > onHitValue)
+            currentFuel = onHitValue;
         else
             GameManager.Instance.IsGameOver = true;
     }
 
     public void DoSwap(bool state)
     {
-        currentFuel = maxFuel;
+        currentFuel = maxHealth;
         SetVisible(state);
     }
 
