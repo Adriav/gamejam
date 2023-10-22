@@ -8855,6 +8855,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1743866958760243938, guid: 303b440d51003104fbbaff7feb4cb48d, type: 3}
+      propertyPath: MinDistance
+      value: 0.8999438
+      objectReference: {fileID: 0}
     - target: {fileID: 5557642810744085084, guid: 303b440d51003104fbbaff7feb4cb48d, type: 3}
       propertyPath: m_Name
       value: Enemy3
