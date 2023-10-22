@@ -17,6 +17,7 @@ public class EnemyLife : MonoBehaviour
     {
         if (other.CompareTag("Bullet"))
         {
+            Debug.Log("HIT");
             TakeDamage(damageAmount);
             Destroy(other.gameObject); // Destruye la bala al colisionar con el enemigo.
         }
