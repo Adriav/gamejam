@@ -3,22 +3,26 @@ using UnityEngine;
 public class TorchAnimator : MonoBehaviour
 {
     [SerializeField] PlayerController player1, player2;
-    private Animator anim1, anim2;
+    private Animator anim1, anim2, torchAnim;
     [SerializeField] float torch_offsetX, torch_offsetY, gun_offsetX, gun_offsetY;
     [SerializeField] float speed;
     private Vector3 targetPos;
     private SpriteRenderer sprite;
+    private float animationTimer = 0.3f;
 
     void Start()
     {
         anim1 = player1.GetComponent<Animator>();
         anim2 = player2.GetComponent<Animator>();
+        torchAnim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         sprite.enabled = false;
     }
 
     void Update()
     {
+        //Update the animator's parameter
+        torchAnim.SetBool("inAnimation", GameManager.Instance.InSwapAnimation);
         if (GameManager.Instance.InSwapAnimation)
         {
             sprite.enabled = true;
