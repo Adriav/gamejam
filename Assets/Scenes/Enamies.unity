@@ -397,6 +397,7 @@ GameObject:
   - component: {fileID: 1495413167}
   - component: {fileID: 1495413166}
   - component: {fileID: 1495413165}
+  - component: {fileID: 1495413169}
   - component: {fileID: 1495413168}
   m_Layer: 0
   m_Name: 'enemy '
@@ -526,10 +527,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1495413162}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfb711685c6429f44b0c077e65acdc47, type: 3}
+  m_Script: {fileID: 11500000, guid: 235eab9eefbfe8f4b85240b0637ca2c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objetivo: {fileID: 217467532}
+  moveSpeed: 2
+  patrolDistance: 2
+  changeDirectionInterval: 5
+--- !u!114 &1495413169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495413162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58aada24b7311b1489c8345605ed8fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   proyectilPrefab: {fileID: 2877124696616408608, guid: a8c22f0f35209914db499a3c885321c3, type: 3}
   velocidadProyectil: 5
   tiempoEntreDisparos: 1.5

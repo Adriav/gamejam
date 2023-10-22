@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Torch : MonoBehaviour
 {
-    [Header("Heat Values")]
+    [Header("Fuel Values")]
     [SerializeField] private float maxFuel;
     [SerializeField] private float fuelSlashLoss;
     [SerializeField] private float fuelTimeLoss;
     [SerializeField] private float fuelHitValue;
+    public float currentFuel;
 
-    [SerializeField] private float currentFuel;
     private Animator anim;
 
     void Start()
@@ -55,9 +55,14 @@ public class Torch : MonoBehaviour
             GameManager.Instance.IsGameOver = true;
     }
 
-    public void DoSwap(bool active)
+    public void DoSwap(bool state)
     {
         currentFuel = maxFuel;
-        gameObject.GetComponent<SpriteRenderer>().enabled = active;
+        SetVisible(state);
+    }
+
+    public void SetVisible(bool state)
+    {
+        GetComponent<SpriteRenderer>().enabled = state;
     }
 }
