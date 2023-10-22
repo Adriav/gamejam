@@ -8,11 +8,14 @@ public class PlayerMovement : MonoBehaviour
   private Rigidbody2D rb;
   private Vector2 movementInput;
   private PlayerController pc;
+  private Animator animator;
+
   // Start is called before the first frame update
   void Awake()
   {
     rb = GetComponent<Rigidbody2D>();
     pc = GetComponent<PlayerController>();
+    animator = GetComponent<Animator>();
   }
 
   // Update is called once per frame
@@ -59,7 +62,9 @@ public class PlayerMovement : MonoBehaviour
     {
       pc.canMove = true;
     }
-
+    //Update Animator
+    animator.SetFloat("movX",rb.velocity.x);
+    animator.SetFloat("movY",rb.velocity.y);
   }
 
 /*
