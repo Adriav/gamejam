@@ -12,12 +12,14 @@ public class EnemyMovement : MonoBehaviour
     private int moveDirection = 1;
     private float timeSinceDirectionChange = 0f;
     private Animator enemyAnimator;
+    private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
         initialPositionY = transform.position.y;
         timeSinceDirectionChange = Random.Range(0f, changeDirectionInterval);
         enemyAnimator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -32,6 +34,7 @@ public class EnemyMovement : MonoBehaviour
         transform.Translate(Vector2.up * moveDirection * moveSpeed * Time.deltaTime);
       //  enemyAnimator.SetFloat(Vector2.up, initialPositionY);
         float distanceMoved = Mathf.Abs(transform.position.y - initialPositionY);
+        enemyAnimator.SetFloat("movY", rb.velocity.y);
         if (distanceMoved >= patrolDistance)
         {
             ChangeDirection();
