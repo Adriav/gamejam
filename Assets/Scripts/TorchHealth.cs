@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TorchHealth : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class TorchHealth : MonoBehaviour
         if (currentFuel <= 0)
         {
             GameManager.Instance.IsGameOver = true;
+            SceneManager.LoadScene("GameOverScreen 1");
         }
         else
         {
