@@ -8,7 +8,7 @@ public class Menus : MonoBehaviour
     // Start is called before the first frame update
     public void Play()
     {
-        SceneManager.LoadScene("InstructionsScreen");
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void SceneLoader(int ScreenIndex)
@@ -27,15 +27,11 @@ public class Menus : MonoBehaviour
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("StartScreen");
-        Debug.Log("toco boton");
     }
 
     public void RestartGame()
     {
-        GameManager.Instance.IsPaused = false;
-        GameManager.Instance.IsGameOver = false;
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.name);
+        SceneManager.LoadScene("SampleScene");
     }
 
 }
