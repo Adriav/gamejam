@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerTorch : MonoBehaviour
 {
-    private TorchHealth torch;
+    private Torch torch;
     private PlayerController controller;
 
     [Header("Fire Bar")]
@@ -14,7 +14,7 @@ public class PlayerTorch : MonoBehaviour
     void Start()
     {
         controller = GetComponent<PlayerController>();
-        torch = transform.GetComponentInChildren<TorchHealth>();
+        torch = transform.GetComponentInChildren<Torch>();
         torch.SetVisible(controller.isCarrier);
         firebar.gameObject.SetActive(controller.isCarrier);
     }
