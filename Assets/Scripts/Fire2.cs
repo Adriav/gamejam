@@ -11,13 +11,15 @@ public class Fire2 : MonoBehaviour
     private float tiempoParaSiguienteDisparo = 0f;
     //public float tiempoDeVida = 0.1f; // Tiempo de vida en segundos.;
     [SerializeField] private float radio;
+    private AudioSource audioSource;
     // private Transform spawnPoint;
     //  public Color nuevoColor = Color.red;
 
     void Start()
     {
         // spawnPoint = transform;
-       
+       tiempoParaSiguienteDisparo = Time.time + tiempoEntreDisparos;
+       audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -37,7 +39,7 @@ public class Fire2 : MonoBehaviour
 
     void Disparar()
     {
-
+        audioSource.Play();
         GameObject proyectil = Instantiate(proyectilPrefab, transform.position, transform.rotation);
         Rigidbody2D rb = proyectil.GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(-velocidadProyectil, 0);
