@@ -9,6 +9,13 @@ public class disparos : MonoBehaviour
     public float velocidadProyectil = 5f; 
     public float tiempoEntreDisparos = 1.5f; 
     private float tiempoParaSiguienteDisparo = 0f;
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        tiempoParaSiguienteDisparo = Time.time + tiempoEntreDisparos;
+        audioSource = GetComponent<AudioSource>();
+    }
     void Update()
     {
         if (objetivo != null)
@@ -26,6 +33,7 @@ public class disparos : MonoBehaviour
     {
         if (objetivo != null)
         {
+            audioSource.Play();
             GameObject proyectil = Instantiate(proyectilPrefab, transform.position, transform.rotation);
             Rigidbody2D rb = proyectil.GetComponent<Rigidbody2D>();
             Vector2 direccionProyectil = (objetivo.position - transform.position).normalized;

@@ -6,8 +6,9 @@ public class Fire3 : MonoBehaviour
 {
     public GameObject proyectilPrefab;
     public float velocidadProyectil = 5f;
-    public float tiempoEntreDisparos = 1.5f;
+    public float tiempoEntreDisparos = 2f;
     private float tiempoParaSiguienteDisparo = 0f;
+    private AudioSource audioSource;
 
     private List<Vector2> direcciones = new List<Vector2>();
 
@@ -18,6 +19,8 @@ public class Fire3 : MonoBehaviour
         direcciones.Add(new Vector2(-1, (float)0.1)); // Izquierda y arriba
         direcciones.Add(new Vector2(-1, 0)); // Izquierda
         direcciones.Add(new Vector2(-1, (float)-0.1)); // Izquierda y abajo
+        tiempoParaSiguienteDisparo = Time.time + tiempoEntreDisparos;
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -32,6 +35,7 @@ public class Fire3 : MonoBehaviour
 
     void Disparar()
     {
+        audioSource.Play();
         for (int i = 0; i < direcciones.Count; i++)
         {
             Vector2 direccion = direcciones[i];
