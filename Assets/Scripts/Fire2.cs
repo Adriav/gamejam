@@ -15,14 +15,12 @@ public class Fire2 : MonoBehaviour
     // private Transform spawnPoint;
     //  public Color nuevoColor = Color.red;
     private Animator animator;
-    private bool isShoot = false;
+    private bool isShoot ;
     private float MAX_TIME = 6.5f;
     private float MIN_TIME = 4.5f;
     private System.Random random = new System.Random();
 
-    private float MAX_TIME = 6.5f;
-    private float MIN_TIME = 4.5f;
-    private System.Random random = new System.Random();
+  
 
     void Start()
     {
@@ -49,15 +47,17 @@ public class Fire2 : MonoBehaviour
         if (Time.time >= tiempoParaSiguienteDisparo)
         {
             Disparar();
-
+            Debug.Log(isShoot);
             tiempoParaSiguienteDisparo = Time.time + tiempoEntreDisparos;
         }
     }
 
     void Disparar()
     {
-        animator.SetBool("disparo", isShoot);
+        
         audioSource.Play();
+        animator.SetBool("disparo", isShoot);
+       
         GameObject proyectil = Instantiate(proyectilPrefab, transform.position, transform.rotation);
         Rigidbody2D rb = proyectil.GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(-velocidadProyectil, 0);
