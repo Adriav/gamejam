@@ -16,6 +16,9 @@ public class Fire2 : MonoBehaviour
     //  public Color nuevoColor = Color.red;
     private Animator animator;
     private bool isShoot = false;
+    private float MAX_TIME = 6.5f;
+    private float MIN_TIME = 4.5f;
+    private System.Random random = new System.Random();
 
     void Start()
     {
@@ -24,9 +27,6 @@ public class Fire2 : MonoBehaviour
         animator.SetBool("disparo", isShoot);
         tiempoParaSiguienteDisparo = Time.time + tiempoEntreDisparos;
         audioSource = GetComponent<AudioSource>();
-        private float MAX_TIME = 6.5f;
-        private float MIN_TIME = 4.5f;
-        private System.Random random = new System.Random();
         tiempoEntreDisparos = (float)(random.NextDouble() * (MAX_TIME - MIN_TIME)) + MIN_TIME;
         tiempoRecarga = tiempoEntreDisparos - 1;
         tiempoParaSiguienteDisparo = Time.time + tiempoEntreDisparos;
