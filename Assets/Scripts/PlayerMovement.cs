@@ -26,37 +26,35 @@ public class PlayerMovement : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if (!GameManager.Instance.IsGameOver && !GameManager.Instance.IsPaused)
+    if (GameManager.Instance.IsGameOver || GameManager.Instance.IsPaused) return;
+    if (pc.isPlayer1 && pc.canMove)
     {
-      if (pc.isPlayer1 && pc.canMove)
-      {
-        movementInput.x = Input.GetAxisRaw("Horizontal");
-        movementInput.y = Input.GetAxisRaw("Vertical");
+      movementInput.x = Input.GetAxisRaw("Horizontal");
+      movementInput.y = Input.GetAxisRaw("Vertical");
 
-        if (limiteSuperior && movementInput.y > 0) movementInput.y = 0;
-        else if (limiteInferior && movementInput.y < 0) movementInput.y = 0;
-        if (limiteDerecha && movementInput.x > 0) movementInput.x = 0;
-        else if (limiteIzquierda && movementInput.x < 0) movementInput.x = 0;
-        
+      if (limiteSuperior && movementInput.y > 0) movementInput.y = 0;
+      else if (limiteInferior && movementInput.y < 0) movementInput.y = 0;
+      if (limiteDerecha && movementInput.x > 0) movementInput.x = 0;
+      else if (limiteIzquierda && movementInput.x < 0) movementInput.x = 0;
 
-        movementInput.Normalize();
-        rb.velocity = movementInput * movementSpeed;
-      }
-      else if (!pc.isPlayer1 && pc.canMove)
-      {
-        
-        movementInput.x = Input.GetAxisRaw("HorizontalTorch");
-        movementInput.y = Input.GetAxisRaw("VerticalTorch");
 
-        if (limiteSuperior && movementInput.y > 0) movementInput.y = 0;
-        else if (limiteInferior && movementInput.y < 0) movementInput.y = 0;
-        if (limiteDerecha && movementInput.x > 0) movementInput.x = 0;
-        else if (limiteIzquierda && movementInput.x < 0) movementInput.x = 0;
+      movementInput.Normalize();
+      rb.velocity = movementInput * movementSpeed;
+    }
+    else if (!pc.isPlayer1 && pc.canMove)
+    {
 
-        movementInput.Normalize();
+      movementInput.x = Input.GetAxisRaw("HorizontalTorch");
+      movementInput.y = Input.GetAxisRaw("VerticalTorch");
 
-        rb.velocity = movementInput * movementSpeed;
-      }
+      if (limiteSuperior && movementInput.y > 0) movementInput.y = 0;
+      else if (limiteInferior && movementInput.y < 0) movementInput.y = 0;
+      if (limiteDerecha && movementInput.x > 0) movementInput.x = 0;
+      else if (limiteIzquierda && movementInput.x < 0) movementInput.x = 0;
+
+      movementInput.Normalize();
+
+      rb.velocity = movementInput * movementSpeed;
     }
     else
     {
@@ -64,7 +62,10 @@ public class PlayerMovement : MonoBehaviour
       pc.canMove = false;
     }
     if (Input.GetKeyDown(KeyCode.G) && pc.isPlayer1)
+    {
       animator.SetBool("swapPose", true);
+      GameManager.Instance.Player1Swap = true;
+    }
     // Jugador 1 presiona G y no se puede mover
     if (Input.GetKey(KeyCode.G) && pc.isPlayer1)
     {
@@ -76,9 +77,13 @@ public class PlayerMovement : MonoBehaviour
     {
       pc.canMove = true;
       animator.SetBool("swapPose", false);
+      GameManager.Instance.Player1Swap = false;
     }
     if (Input.GetKeyDown(KeyCode.RightShift) && !pc.isPlayer1)
+    {
       animator.SetBool("swapPose", true);
+      GameManager.Instance.Player2Swap = true;
+    }
     // Jugador 2 presiona RShift y no se puede mover
     if (Input.GetKey(KeyCode.RightShift) && !pc.isPlayer1)
     {
@@ -90,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
     {
       pc.canMove = true;
       animator.SetBool("swapPose", false);
+      GameManager.Instance.Player2Swap = false;
     }
     //Update Animator
     animator.SetFloat("movX", rb.velocity.x);
@@ -101,19 +107,19 @@ public class PlayerMovement : MonoBehaviour
     String colliderTag = collider.tag;
     switch (colliderTag)
     {
-      case "LimSup": 
+      case "LimSup":
         limiteSuperior = true;
         break;
-      
-      case "LimInf": 
+
+      case "LimInf":
         limiteInferior = true;
         break;
-      
-      case "LimDer": 
+
+      case "LimDer":
         limiteDerecha = true;
         break;
 
-      case "LimIzq": 
+      case "LimIzq":
         limiteIzquierda = true;
         break;
 
@@ -127,19 +133,19 @@ public class PlayerMovement : MonoBehaviour
     String colliderTag = collider.tag;
     switch (colliderTag)
     {
-      case "LimSup": 
+      case "LimSup":
         limiteSuperior = false;
         break;
-      
-      case "LimInf": 
+
+      case "LimInf":
         limiteInferior = false;
         break;
-      
-      case "LimDer": 
+
+      case "LimDer":
         limiteDerecha = false;
         break;
 
-      case "LimIzq": 
+      case "LimIzq":
         limiteIzquierda = false;
         break;
 

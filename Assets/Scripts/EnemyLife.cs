@@ -7,17 +7,21 @@ public class EnemyLife : MonoBehaviour
     public int maxHealth = 3;
     private int currentHealth;
     public int damageAmount = 1; // Cantidad de da�o que causa la bala.
+    [SerializeField] private List<Behaviour> components;
 
     private void Start()
     {
         currentHealth = maxHealth;
+        foreach (Behaviour component in components)
+        {
+            component.enabled = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Bullet"))
         {
-            Debug.Log("HIT");
             TakeDamage(damageAmount);
             Destroy(other.gameObject); // Destruye la bala al colisionar con el enemigo.
         }
@@ -36,6 +40,14 @@ public class EnemyLife : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
+    }
+
+    public void ActivateEnemy()
+    {
+        foreach (Behaviour component in components)
+        {
+            component.enabled = true;
+        }
     }
 }
 

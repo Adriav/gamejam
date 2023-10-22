@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Vulnerability")]
     [SerializeField] private float vulnerabilityDuration = 4f;
-    private bool isVulnerable = false;
+    
 
     [Header("iFrames")]
     [SerializeField] private float iFramesDuration = 2f;
@@ -33,11 +33,16 @@ public class PlayerController : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         animator.SetBool("hasTorch", isCarrier);
+        if (isCarrier)
+        {
+            GameManager.Instance.TorchPlayer = transform;
+        }
     }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.RightShift) && !isVulnerable && coolDown <= 0)
+        if (GameManager.Instance.IsGameOver || GameManager.Instance.IsPaused) return;
+        if (GameManager.Instance.Player1Swap && GameManager.Instance.Player2Swap && !GameManager.Instance.PlayerVulnerable && coolDown <= 0)
         {
             SwitchRole();
             coolDown = coolDownTime;
@@ -59,6 +64,10 @@ public class PlayerController : MonoBehaviour
         playerShoot.SwitchShoot();
         carrier.SwitchCarrier();
         animator.SetBool("hasTorch", isCarrier);
+        if (isCarrier)
+        {
+            GameManager.Instance.TorchPlayer = transform;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -75,6 +84,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(InvulnerabilityShooter());
             }
             animator.SetTrigger("hurt");
+            Destroy(other.gameObject);
         }
 
     }
@@ -89,13 +99,13 @@ public class PlayerController : MonoBehaviour
     }
     private IEnumerator InvulnerabilityShooter()
     {
-        isVulnerable = true;
+        GameManager.Instance.PlayerVulnerable = true;
         Physics2D.IgnoreLayerCollision(6, 8, true);
         Color colorDefault = sprite.color;
         sprite.color = new Color(1, 1, 1, 0.5f);
         yield return new WaitForSeconds(vulnerabilityDuration);
         sprite.color = colorDefault;
         Physics2D.IgnoreLayerCollision(6, 8, false);
-        isVulnerable = false;
+        GameManager.Instance.PlayerVulnerable = false;
     }
 }

@@ -27,6 +27,12 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    public bool IsGameOver { get; set; }
-    public bool IsPaused { get; set; }
+    public bool IsGameOver { get{return this.IsGameOver;} set{this.IsGameOver = value; Time.timeScale = value ? 0: 1;} }
+    public bool IsPaused { get{return this.IsPaused;} set{this.IsPaused = value; Time.timeScale = value ? 0: 1;} }
+    public bool MoveBackground { get; set; }
+    public bool Player1Swap { get; set; }
+    public bool Player2Swap { get; set; }
+    public bool PlayerVulnerable {get; set;}
+    public Transform TorchPlayer { get; set; }
+
 }

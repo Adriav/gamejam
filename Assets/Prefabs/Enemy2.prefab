@@ -103,6 +103,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   damageAmount: 1
+  components:
+  - {fileID: 5002713891308104142}
+  - {fileID: 4763769030952994213}
 --- !u!114 &5002713891308104142
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class disparos : MonoBehaviour
 {
-    public Transform objetivo; 
+    private Transform objetivo; 
     public GameObject proyectilPrefab; 
     public float velocidadProyectil = 5f; 
     public float tiempoEntreDisparos = 1.5f; 
@@ -18,6 +18,7 @@ public class disparos : MonoBehaviour
     }
     void Update()
     {
+        objetivo = GameManager.Instance.TorchPlayer;
         if (objetivo != null)
         {    
             Vector2 direction = objetivo.position;         

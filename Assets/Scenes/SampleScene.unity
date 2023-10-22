@@ -234,6 +234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 365979861}
   - component: {fileID: 365979860}
+  - component: {fileID: 365979862}
   m_Layer: 0
   m_Name: EnemyArea
   m_TagString: Untagged
@@ -295,12 +296,25 @@ Transform:
   m_GameObject: {fileID: 365979859}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.38, y: 4.54, z: 0.012932768}
+  m_LocalPosition: {x: -0.91, y: 4.73, z: 0.012932768}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 966642530}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &365979862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365979859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b242123fa9786a94991048a1384465db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,23 +413,27 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 365979861}
     m_Modifications:
+    - target: {fileID: 3002850577091803244, guid: 52f190a905da6644b8e88e446094bdf6, type: 3}
+      propertyPath: objetivo
+      value: 
+      objectReference: {fileID: 1135812290}
     - target: {fileID: 3002850577091803244, guid: 52f190a905da6644b8e88e446094bdf6, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3150607966261721954, guid: 52f190a905da6644b8e88e446094bdf6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.35
+      value: 5.97
       objectReference: {fileID: 0}
     - target: {fileID: 3150607966261721954, guid: 52f190a905da6644b8e88e446094bdf6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.23
+      value: -2.31
       objectReference: {fileID: 0}
     - target: {fileID: 3150607966261721954, guid: 52f190a905da6644b8e88e446094bdf6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.012932768
       objectReference: {fileID: 0}
     - target: {fileID: 3150607966261721954, guid: 52f190a905da6644b8e88e446094bdf6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -423,15 +441,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3150607966261721954, guid: 52f190a905da6644b8e88e446094bdf6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3150607966261721954, guid: 52f190a905da6644b8e88e446094bdf6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3150607966261721954, guid: 52f190a905da6644b8e88e446094bdf6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3150607966261721954, guid: 52f190a905da6644b8e88e446094bdf6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -577,6 +595,16 @@ Transform:
   - {fileID: 695132225}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &966642530 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3150607966261721954, guid: 52f190a905da6644b8e88e446094bdf6, type: 3}
+  m_PrefabInstance: {fileID: 546450119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1135812290 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3765754052029296738, guid: 3574710ec54a996429d3afcbbc103109, type: 3}
+  m_PrefabInstance: {fileID: 1325227427559905843}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1261852065
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,6 +659,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1385031899}
   - component: {fileID: 1385031900}
+  - component: {fileID: 1385031901}
   m_Layer: 0
   m_Name: LimiteDerecho
   m_TagString: LimDer
@@ -698,6 +727,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 10.542329}
   m_EdgeRadius: 0
+--- !u!50 &1385031901
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385031898}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1470069817
 GameObject:
   m_ObjectHideFlags: 0
@@ -994,6 +1050,5 @@ SceneRoots:
   - {fileID: 1325227427559905843}
   - {fileID: 3247687154524988894}
   - {fileID: 280839636}
-  - {fileID: 546450119}
   - {fileID: 365979861}
   - {fileID: 938684728}
