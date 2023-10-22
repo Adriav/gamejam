@@ -139,6 +139,26 @@ PrefabInstance:
       propertyPath: firebar
       value: 
       objectReference: {fileID: 1772750843}
+    - target: {fileID: 2997400380480943578, guid: 3574710ec54a996429d3afcbbc103109, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997400380480943578, guid: 3574710ec54a996429d3afcbbc103109, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997400380480943578, guid: 3574710ec54a996429d3afcbbc103109, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997400380480943578, guid: 3574710ec54a996429d3afcbbc103109, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997400380480943578, guid: 3574710ec54a996429d3afcbbc103109, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3765754052029296738, guid: 3574710ec54a996429d3afcbbc103109, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.35
@@ -183,12 +203,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player1
       objectReference: {fileID: 0}
-    - target: {fileID: 7011944078362233931, guid: 3574710ec54a996429d3afcbbc103109, type: 3}
-      propertyPath: m_Layer
-      value: 6
+    - target: {fileID: 8095507908114803114, guid: 3574710ec54a996429d3afcbbc103109, type: 3}
+      propertyPath: m_Name
+      value: TorchHitbox
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 5285426992825242717, guid: 3574710ec54a996429d3afcbbc103109, type: 3}
+    - {fileID: 3304590867010939589, guid: 3574710ec54a996429d3afcbbc103109, type: 3}
+    - {fileID: 4215906683902448486, guid: 3574710ec54a996429d3afcbbc103109, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 3216498231865643897, guid: 3574710ec54a996429d3afcbbc103109, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3574710ec54a996429d3afcbbc103109, type: 3}
@@ -601,6 +625,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 204489764106856311, guid: 3160f0a06348e6f4394791f75503d1c9, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.85
+      objectReference: {fileID: 0}
     - target: {fileID: 1961382945999746983, guid: 3160f0a06348e6f4394791f75503d1c9, type: 3}
       propertyPath: fuelTimeLoss
       value: 1
@@ -657,16 +685,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7222910129537216552, guid: 3160f0a06348e6f4394791f75503d1c9, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -254553720, guid: 15f95f361ce10ee45a2c29fc6c60850b, type: 3}
-    - target: {fileID: 7435187678935928860, guid: 3160f0a06348e6f4394791f75503d1c9, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6632062965348475141, guid: 3160f0a06348e6f4394791f75503d1c9, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3160f0a06348e6f4394791f75503d1c9, type: 3}
