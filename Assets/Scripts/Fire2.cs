@@ -20,8 +20,6 @@ public class Fire2 : MonoBehaviour
     private float MIN_TIME = 4.5f;
     private System.Random random = new System.Random();
 
-  
-
     void Start()
     {
         // spawnPoint = transform;
