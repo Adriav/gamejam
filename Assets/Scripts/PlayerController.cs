@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerShoot playerShoot;
     private PlayerTorch carrier;
+    private Animator animator;
 
     [Header("Player Status")]
     public bool isPlayer1;
@@ -30,6 +31,8 @@ public class PlayerController : MonoBehaviour
         playerShoot = GetComponent<PlayerShoot>();
         carrier = GetComponent<PlayerTorch>();
         sprite = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+        animator.SetBool("hasTorch", isCarrier);
     }
 
     private void Update()
@@ -47,8 +50,15 @@ public class PlayerController : MonoBehaviour
 
     private void SwitchRole()
     {
+        //Set state for animator
+        animator.SetBool("swapPose",false);
+        if(isCarrier)
+            animator.SetTrigger("swapThrow");
+        animator.SetTrigger("swapFinish");
+        //Swap the variables
         playerShoot.SwitchShoot();
         carrier.SwitchCarrier();
+        animator.SetBool("hasTorch", isCarrier);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -63,8 +73,8 @@ public class PlayerController : MonoBehaviour
             else
             {
                 StartCoroutine(InvulnerabilityShooter());
-
             }
+            animator.SetTrigger("hurt");
         }
 
     }

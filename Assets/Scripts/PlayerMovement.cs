@@ -22,13 +22,13 @@ public class PlayerMovement : MonoBehaviour
   void Update()
   {
     if (!GameManager.Instance.IsGameOver && !GameManager.Instance.IsPaused)
-    {  
+    {
       if (pc.isPlayer1 && pc.canMove)
       {
         movementInput.x = Input.GetAxisRaw("Horizontal");
         movementInput.y = Input.GetAxisRaw("Vertical");
         movementInput.Normalize();
-    
+
         rb.velocity = movementInput * movementSpeed;
       }
       else if (!pc.isPlayer1 && pc.canMove)
@@ -40,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = movementInput * movementSpeed;
       }
     }
+    if (Input.GetKeyDown(KeyCode.G) && pc.isPlayer1)
+      animator.SetBool("swapPose", true);
     // Jugador 1 presiona G y no se puede mover
     if (Input.GetKey(KeyCode.G) && pc.isPlayer1)
     {
@@ -50,7 +52,10 @@ public class PlayerMovement : MonoBehaviour
     if (Input.GetKeyUp(KeyCode.G) && pc.isPlayer1)
     {
       pc.canMove = true;
+      animator.SetBool("swapPose", false);
     }
+    if (Input.GetKeyDown(KeyCode.RightShift) && !pc.isPlayer1)
+      animator.SetBool("swapPose", true);
     // Jugador 2 presiona RShift y no se puede mover
     if (Input.GetKey(KeyCode.RightShift) && !pc.isPlayer1)
     {
@@ -61,16 +66,17 @@ public class PlayerMovement : MonoBehaviour
     if (Input.GetKeyUp(KeyCode.RightShift) && !pc.isPlayer1)
     {
       pc.canMove = true;
+      animator.SetBool("swapPose", false);
     }
     //Update Animator
-    animator.SetFloat("movX",rb.velocity.x);
-    animator.SetFloat("movY",rb.velocity.y);
+    animator.SetFloat("movX", rb.velocity.x);
+    animator.SetFloat("movY", rb.velocity.y);
   }
 
-/*
-  public void switchMoveStatus()
-  {
-    canMove = !canMove;
-  }
-*/
+  /*
+    public void switchMoveStatus()
+    {
+      canMove = !canMove;
+    }
+  */
 }
