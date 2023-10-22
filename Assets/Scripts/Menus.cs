@@ -32,6 +32,8 @@ public class Menus : MonoBehaviour
 
     public void RestartGame()
     {
+        GameManager.Instance.IsPaused = false;
+        GameManager.Instance.IsGameOver = false;
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }
