@@ -7,9 +7,10 @@ public class PauseScreen : MonoBehaviour
     // Start is called before the first frame update
     public GameObject pauseMenu;
     public bool isPaused;
-    void Start()
+    private void Awake()
     {
         GameManager.Instance.IsPaused = false;
+        GameManager.Instance.IsGameOver = false;
         pauseMenu.SetActive(false);
     }
 
