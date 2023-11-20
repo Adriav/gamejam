@@ -51,7 +51,7 @@ public class TorchHealth : MonoBehaviour
     public void DoHit()
     {
         if (currentFuel > onHitValue)
-            currentFuel = onHitValue;
+            currentFuel -= onHitValue;
         else
             currentFuel = 0;
     }
